@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace WhatsUnitTest
 {
@@ -9,6 +10,10 @@ namespace WhatsUnitTest
     {
         static void Main(string[] args)
         {
+            NUnit.ConsoleRunner.Runner.Main(new string[]
+           {
+              Assembly.GetExecutingAssembly().Location, 
+           });
         }
     }
 }
