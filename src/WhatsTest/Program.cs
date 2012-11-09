@@ -79,10 +79,6 @@ namespace WhatsTest
             string sender = ReadPhone(); // Mobile number with country code (but without + or 00)
             string imei = ReadIMEI(); // MAC Address for iOS IMEI for other platform (Android/etc) 
 
-            Console.WriteLine(String.Format("{0} {1} {2}", nickname, sender, imei));
-
-            return;
-
             WhatsApp wa = new WhatsApp(sender, imei, nickname, true);
 
             string countrycode = sender.Substring(0, 2);
