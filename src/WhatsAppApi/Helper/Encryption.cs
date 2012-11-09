@@ -11,6 +11,12 @@ namespace WhatsAppApi.Helper
         public static RC4 encryptionOutgoing = null;
         public static RC4 encryptionIncoming = null;
 
+        public static void _Reset()
+        {
+            encryptionOutgoing = null;
+            encryptionIncoming = null;
+        }
+
         public static byte[] WhatsappEncrypt(byte[] key, byte[] data, bool appendHash)
         {
             if(encryptionOutgoing == null)
