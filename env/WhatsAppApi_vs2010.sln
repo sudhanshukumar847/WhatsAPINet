@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsAppPort", "..\src\What
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsTest", "..\src\WhatsTest\WhatsTest.csproj", "{E003A3A5-4ECF-475A-8926-154EF85CF4B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsUnitTest", "..\src\WhatsUnitTest\WhatsUnitTest.csproj", "{679D0EEF-AFA0-44D0-A46D-B473617C81B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{E003A3A5-4ECF-475A-8926-154EF85CF4B7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{E003A3A5-4ECF-475A-8926-154EF85CF4B7}.Release|x86.ActiveCfg = Release|x86
 		{E003A3A5-4ECF-475A-8926-154EF85CF4B7}.Release|x86.Build.0 = Release|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Debug|x86.ActiveCfg = Debug|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Debug|x86.Build.0 = Debug|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Release|Any CPU.ActiveCfg = Release|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Release|x86.ActiveCfg = Release|x86
+		{679D0EEF-AFA0-44D0-A46D-B473617C81B2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
