@@ -20,6 +20,12 @@ namespace WhatsUnitTest
             return bytes;
         }
 
+        public static string ByteArrayToString(byte[] ba)
+        {
+            string hex = BitConverter.ToString(ba);
+            return hex.Replace("-", "");
+        }
+
 
         [Test]
         public void StringToByteArrayTest()
@@ -27,6 +33,16 @@ namespace WhatsUnitTest
             var str = "DEADC0FFEE1337";
             var expected = new byte[] { 0xDE, 0xAD, 0xC0, 0xFF, 0xEE, 0x13, 0x37 };
             var actual = StringToByteArray(str);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ByteArrayToString()
+        {
+            var expected = "DEADC0FFEE1337";
+            var arr = new byte[] { 0xDE, 0xAD, 0xC0, 0xFF, 0xEE, 0x13, 0x37 };
+            var actual = ByteArrayToString(arr);
 
             Assert.AreEqual(expected, actual);
         }
