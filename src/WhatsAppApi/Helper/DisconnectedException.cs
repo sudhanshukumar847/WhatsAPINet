@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WhatsAppApi.Helper
 {
-    class ConnectionException : Exception
+    public class ConnectionException : Exception
     {
         public ConnectionException()
             : base()
