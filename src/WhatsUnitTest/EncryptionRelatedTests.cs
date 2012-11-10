@@ -12,6 +12,8 @@ namespace WhatsUnitTest {
         [Test]
         public void EncryptionTest() {
 
+            Encryption enc = new Encryption(TestKey);
+
             string[] messages = { "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA",
                                          "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA",
                                          "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA" };
@@ -19,17 +21,15 @@ namespace WhatsUnitTest {
                                     "EAC74BC62C02AB7D724DE2382A51CD8834C804DC49DCEF7CDBAE2E5E2E43D3789BBF3AD0",
                                     "C7EDB8049277F0B20ABFF211907B829397EB9144D522B6AA40CB53B410D869FE747A10AD"};
 
-            Encryption._Reset();
-
-            var a1 = Encryption.WhatsappEncrypt(TestKey, Util.StringToByteArray(messages[0]), false);
+            var a1 = enc.WhatsappEncrypt(Util.StringToByteArray(messages[0]), false);
             var aa1 = Util.ByteArrayToString(a1);
             Assert.AreEqual(aa1.ToUpper(), answers[0]);
 
-            var a2 = Encryption.WhatsappEncrypt(TestKey, Util.StringToByteArray(messages[1]), true);
+            var a2 = enc.WhatsappEncrypt(Util.StringToByteArray(messages[1]), true);
             var aa2 = Util.ByteArrayToString(a2);
             Assert.AreEqual(aa2.ToUpper(), answers[1]);
 
-            var a3 = Encryption.WhatsappEncrypt(TestKey, Util.StringToByteArray(messages[2]), true);
+            var a3 = enc.WhatsappEncrypt(Util.StringToByteArray(messages[2]), true);
             var aa3 = Util.ByteArrayToString(a3);
             Assert.AreEqual(aa3.ToUpper(), answers[2]);
         }
@@ -38,6 +38,8 @@ namespace WhatsUnitTest {
         public void EncryptionDecryptionTest()
         {
 
+            Encryption enc = new Encryption(TestKey);
+
             string[] messages = { "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA",
                                          "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA",
                                          "D814F2CE24AF7153B37BEEB20149BA669436172C8655BC09ACE66B23CEC8C0EA" };
@@ -45,16 +47,13 @@ namespace WhatsUnitTest {
                                     "EAC74BC62C02AB7D724DE2382A51CD8834C804DC49DCEF7CDBAE2E5E2E43D3789BBF3AD0",
                                     "C7EDB8049277F0B20ABFF211907B829397EB9144D522B6AA40CB53B410D869FE747A10AD"};
 
-            Encryption._Reset();
 
             dynamic vars = new Dictionary<string, object>();
 
-            var e1 = Encryption.WhatsappEncrypt(TestKey, Util.StringToByteArray(messages[0]), true);
-            var r1 = Encryption.WhatsappDecrypt(TestKey, e1);
+            var e1 = enc.WhatsappEncrypt(Util.StringToByteArray(messages[0]), true);
+            var r1 = enc.WhatsappDecrypt(e1);
             var r1s = Util.ByteArrayToString(r1).ToUpper();
             Assert.AreEqual(messages[0], r1s);
-
-
         }
 
     } //! class

@@ -6,22 +6,29 @@ using System.Text;
 
 namespace WhatsAppApi.Helper
 {
-    public static class Encryption
-    {
-        public static RC4 encryptionOutgoing = null;
-        public static RC4 encryptionIncoming = null;
 
-        public static void _Reset()
+    // TODO: As of now, different Encryption instances seem to be created for writing and reading.
+    // Thus, one of the two is currently unused. Should eventually be refactored.
+
+    public class Encryption
+    {
+        public RC4 encryptionOutgoing = null;
+        public RC4 encryptionIncoming = null;
+
+        // TODO: This probably shouldnt be accessible, but as of now it is useful for it to be accessible
+        // because it is used to get some hashes.
+        public byte[] Key { get; set; }
+
+        public Encryption(byte [] key)
         {
-            encryptionOutgoing = null;
-            encryptionIncoming = null;
+            encryptionOutgoing = new RC4(key, 256);
+            encryptionIncoming = new RC4(key, 256);
+            Key = key;
         }
 
-        public static byte[] WhatsappEncrypt(byte[] key, byte[] data, bool appendHash)
+        public byte[] WhatsappEncrypt(byte[] data, bool appendHash)
         {
-            if(encryptionOutgoing == null)
-                encryptionOutgoing = new RC4(key, 256);
-            HMACSHA1 h = new HMACSHA1(key);
+            HMACSHA1 h = new HMACSHA1(Key);
             byte[] buff = new byte[data.Length];
             Buffer.BlockCopy(data, 0, buff, 0, data.Length);
 
@@ -41,10 +48,11 @@ namespace WhatsAppApi.Helper
 
             return response;
         }
-        public static byte[] WhatsappDecrypt(byte[] key, byte[] data)
+
+        public byte[] WhatsappDecrypt(byte[] data)
         {
             if (encryptionIncoming == null)
-                encryptionIncoming = new RC4(key, 256);
+                encryptionIncoming = new RC4(Key, 256);
             byte[] buff = new byte[data.Length];
             Buffer.BlockCopy(data, 0, buff, 0, data.Length);
             encryptionIncoming.Cipher(buff);
