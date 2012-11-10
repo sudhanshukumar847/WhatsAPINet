@@ -51,10 +51,14 @@ namespace WhatsAppApi
 
         private Encryption encryption;
 
+        public bool AcknowledgeMessages { get; set; }
+
 
         //array("sec" => 2, "usec" => 0);
         public WhatsApp(string phoneNum, string imei, string nick, bool debug = false)
         {
+            AcknowledgeMessages = true;
+
             this.messageQueue = new List<ProtocolTreeNode>();
             //this.sysEncoding = Encoding.GetEncoding("ISO-8859-1");
             //this.challengeArray = new Dictionary<string, string>();
@@ -401,7 +405,9 @@ namespace WhatsAppApi
                     if (ProtocolTreeNode.TagEquals(node,"message"))
                     {
                         this.AddMessage(node);
-                        this.sendMessageReceived(node);
+
+                        if(AcknowledgeMessages)
+                            this.sendMessageReceived(node);
                     }
                     if (ProtocolTreeNode.TagEquals(node,"stream:error"))
                     {
