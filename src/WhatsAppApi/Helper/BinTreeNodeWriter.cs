@@ -361,7 +361,15 @@ namespace WhatsAppApi.Helper
         {
             if (WhatsApp.DEBUG && debugMsg.Length > 0)
             {
-                Console.WriteLine(debugMsg);
+                // Replace non-printable characters with dots.
+                var s =
+                    from c in debugMsg.ToCharArray()
+                    where !char.IsControl(c)
+                    select c;
+
+                var str = new string(s.ToArray());
+
+                Console.WriteLine(str);
             }
         }
     }
