@@ -132,6 +132,14 @@ namespace WhatsAppApi
                 try
                 {
                     receiveLength = socket.Receive(buff, 0, length, 0);
+
+                    // If it returns zero, the other end has closed
+                    // the connection.
+                    if (receiveLength == 0)
+                    {
+                        Console.WriteLine("Remote end closed the connection");
+                        return null;
+                    }
                 }
                 catch (SocketException excpt)
                 {
