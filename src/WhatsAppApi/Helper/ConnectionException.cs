@@ -22,5 +22,5 @@ namespace WhatsAppApi.Helper
         {
 
         }
-    }
-}
+    } //! class
+} //! namespace

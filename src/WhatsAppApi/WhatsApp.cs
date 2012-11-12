@@ -197,7 +197,14 @@ namespace WhatsAppApi
 
         public void PollMessages()
         {
-            this.processInboundData(this.whatsNetwork.ReadData());
+            byte[] data = this.whatsNetwork.ReadData();
+
+            // TODO: Properly handle errors in WhatsNetwork. Returning null
+            // and then throwing an exception is somewhat messy.
+            if (data == null)
+                throw new Exception("Could not read data");
+
+            this.processInboundData(data);
         }
 
         public void Pong(string msgid)
