@@ -199,11 +199,13 @@ namespace WhatsAppApi
         {
             byte[] data = this.whatsNetwork.ReadData();
 
-            // TODO: Properly handle errors in WhatsNetwork. Returning null
-            // and then throwing an exception is somewhat messy.
+            // Data is null. There was a timeout. For now, when this occurs
+            // we'll just go on.
             if (data == null)
-                throw new Exception("Could not read data");
-
+            {
+                Console.Error.WriteLine("T/O");
+            }
+           
             this.processInboundData(data);
         }
 
